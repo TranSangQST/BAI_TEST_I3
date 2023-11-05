@@ -2,27 +2,33 @@
 
 class Program
 {
+    static List<Hero> GenerateRandomHeroes(int n)
+    {
+        List<Hero> heroes = new List<Hero>();
+        Random random = new Random();
+
+        for (int i = 0; i < n; i++)
+        {
+            // Generate a random number (0 or 1) to decide whether to create a FireHero or WaterHero
+            int randomHeroType = random.Next(2);
+            if (randomHeroType == 0)
+            {
+                heroes.Add(new FireHero());
+            }
+            else
+            {
+                heroes.Add(new WaterHero());
+            }
+        }
+
+        return heroes;
+    }
     static void Main()
     {
-        List<Hero> heroes = new List<Hero>
-        {
-            new FireHero(),
-            new WaterHero(),
-            new FireHero(),
-            new WaterHero(),
-            new FireHero(),
-            new WaterHero(),
-            new FireHero(),
-            new WaterHero(),
-            new WaterHero(),
-            new WaterHero(),
-            new FireHero(),
-            new FireHero(),
-            new FireHero(),
-            new WaterHero(),
+        Console.Write("Enter the number of heroes (n): ");
+        int n = int.Parse(Console.ReadLine());
 
-        };
-
+        List<Hero> heroes = GenerateRandomHeroes(n);
 
         Console.WriteLine("Hero before battle");
         Hero.DisplayAllHerosStatus(heroes);

@@ -1,3 +1,4 @@
+-- Create Table
 CREATE TABLE Account (
     account_id INT PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
@@ -63,7 +64,7 @@ CREATE TABLE MessageRead (
 );
 
 
-
+-- Insert Data
 INSERT INTO Account (account_id, username, fullname, email, created_at, updated_at)
 VALUES (1, 'user1', 'User One', 'user1@example.com', '2023-01-01 10:00:00', '2023-01-01 10:00:00'),
        (2, 'user2', 'User Two', 'user2@example.com', '2023-01-02 11:00:00', '2023-01-02 11:00:00'),
@@ -104,14 +105,14 @@ VALUES (3, 2, 2, '2023-01-10 10:25:00'),
        (4, 4, 2, '2023-01-11 11:35:00');
 
 
-
+-- 4. Truy vấn danh sách account, kèm theo số lượng nhóm chat mà mỗi account tham gia.
 SELECT A.account_id, A.username, COUNT(MG.chat_group_id) AS NumberOfGroups
 FROM Account A
 LEFT JOIN ChatGroupAccount MG ON A.account_id = MG.account_id
 GROUP BY A.account_id, A.username;
 
 
-
+-- 5. Đầu vào là 1 account, biết được danh sách các account khác cùng nhóm chat nhưng chưa kết bạn.
 CREATE PROCEDURE GetNonFriendsInSameChatGroup
     @AccountID INT
 AS
@@ -139,7 +140,7 @@ END;
 EXEC GetNonFriendsInSameChatGroup @AccountID = 1;
 
 
-
+-- 6. Đầu vào là 1 account, biết được danh sách nhóm chat mà account đó chưa đọc tin nhắn cuối cùng của nhóm.
 CREATE PROCEDURE GetUnreadChatGroups
     @AccountID INT
 AS
