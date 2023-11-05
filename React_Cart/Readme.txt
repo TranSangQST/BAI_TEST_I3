@@ -1,0 +1,2 @@
+Sử dụng React thiết kế màn hình như ảnh đính kèm.
+Hình vẽ đính kèm là yêu cầu sơ bộ, người làm cần phải đặt mình vào vị trí người sử dụng màn hình đó để lựa chọn mua hàng, từ đó suy nghĩ thiết kế thêm các yếu tố khác để được màn hình hoàn chỉnh.

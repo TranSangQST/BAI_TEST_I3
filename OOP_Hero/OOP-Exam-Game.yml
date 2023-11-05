@@ -1,0 +1,36 @@
+(Ưu tiên sử dụng C#, có thể sử dụng JS, C++)
+Viết các class định nghĩa cho các loại nhân vật trong game theo yêu cầu sau:
+
+Hero:
+    properies:
+    - health: Máu bị giảm/tăng dựa vào kĩ năng thi triển hoặc bị hero khác thi triển lên
+    - mana: Sử dụng để xuất chiêu, tùy chiêu sẽ có số lượng mana tiêu hao khác nhau, ko đủ mana sẽ ko sử dụng được chiêu
+
+    Các methods để xuất chiêu với tên lần lượt là Q, W, E, R, một lần xuất chiêu có thể xuất trên nhiều đối thủ. Mỗi lần xuất chiêu trên n đối thủ, với mỗi đối thủ, hero ra chiêu sẽ tiêu tốn một lượng mana (chi tiết bên dưới). 
+=======================================
+Hero thể lửa: health 100, mana 20
+    - Q: + giảm 15 máu của đối phương trúng phải
+         + mana tiêu hao: 2
+    - W: + hồi 10 máu, 10 mana
+         + mana: 0
+    - E: + giảm 30 máu của đối phương đầu tiên trúng phải 
+         + mana: 5
+    - R: + giảm 30 máu của đối phương trúng phải
+         + mana: 10
+=======================================
+Hero thể nước: health 80, mana 20
+    - Q: + giảm 20 máu của đối phương trúng phải
+         + mana: 3
+    - W: + trong 1 đợt ra chiêu, giảm 10 máu của 2 đối phương đầu tiên trúng phải, giảm 5 máu của đối phương thứ 3 trở đi
+         + mana: 3
+    - E: + hồi 20 máu, 5 mana
+         + mana: 0
+    - R: + giảm 50 máu của đối phương trúng phải, tăng 5 máu tối đa của mình
+         + mana: 15
+
+==============================================
+
+
+Chương trình:
+Giả lập trận đánh giữa n Hero
+Yêu cầu viết chương trình xuất ra màn hình Health và Mana của các Hero sau trận đánh, đồng thời cho biết mỗi Hero sử dụng fail chiêu nào (fail khi không đủ mana để sử dụng chiêu mà vẫn thi triển)

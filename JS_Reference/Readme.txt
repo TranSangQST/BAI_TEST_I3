@@ -1,0 +1,1 @@
+Yêu cầu ghi kết quả và giải thích 2 bài tập nhỏ
