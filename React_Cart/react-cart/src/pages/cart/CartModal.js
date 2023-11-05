@@ -30,7 +30,7 @@ const CartModal = ({
   const total = useMemo(
     () =>
       productsInCart.reduce(
-        (acc, product) => acc + product.price * product.quantity,
+        (acc, product) => acc + product?.price * product?.quantity,
         0
       ),
     [productsInCart]
@@ -49,7 +49,7 @@ const CartModal = ({
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 800,
+          width: 1000,
           bgcolor: "background.paper",
           border: "1px solid rgba(0,0,0,0.2)",
           borderRadius: 1,
@@ -71,29 +71,35 @@ const CartModal = ({
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell sx={{ textAlign: "center" }}>ID</TableCell>
-                <TableCell sx={{ textAlign: "center" }}>Tên sản phẩm</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>STT</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>Mặt hàng</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Hình ảnh</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Giá</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Số lượng</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>Thành tiền</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Thao tác</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {productsInCart.map((product) => (
-                <TableRow key={product.id}>
-                  <TableCell>{product.id}</TableCell>
-                  <TableCell>{product.name}</TableCell>
+              {productsInCart.map((product, index) => (
+                <TableRow key={product?.id}>
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>{product?.name}</TableCell>
                   <TableCell>
                     <img
-                      src={product.img}
-                      alt={product.name}
+                      src={product?.img}
+                      alt={product?.name}
                       width="50"
                       height="50"
                     />
                   </TableCell>
-                  <TableCell>${product.price}</TableCell>
-                  <TableCell>{product.quantity} </TableCell>
+                  <TableCell width={120}>
+                    {formatCurrency(product?.price)}
+                  </TableCell>
+                  <TableCell>{product?.quantity} </TableCell>
+                  <TableCell width={120}>
+                    {formatCurrency(product?.price * product?.quantity)}
+                  </TableCell>
                   <TableCell>
                     <Box
                       sx={{
@@ -105,19 +111,19 @@ const CartModal = ({
                     ></Box>
                     <IconButton
                       color="primary"
-                      onClick={() => increaseQuantity(product.id)}
+                      onClick={() => increaseQuantity(product?.id)}
                     >
                       <AddIcon />
                     </IconButton>
                     <IconButton
                       color="primary"
-                      onClick={() => decreaseQuantity(product.id)}
+                      onClick={() => decreaseQuantity(product?.id)}
                     >
                       <RemoveIcon />
                     </IconButton>
                     <IconButton
                       color="error"
-                      onClick={() => removeFromCart(product.id)}
+                      onClick={() => removeFromCart(product?.id)}
                     >
                       <DeleteIcon />
                     </IconButton>
